@@ -1,0 +1,5 @@
+com/superstarbank/vomodel/forex/ForexFeedRequest.class
+com/superstarbank/vomodel/simplepayment/SimplePaymentRequest.class
+com/superstarbank/vomodel/BaseVo.class
+com/superstarbank/vomodel/forex/ForexFeedResponse.class
+com/superstarbank/vomodel/simplepayment/SimplePaymentResponse.class

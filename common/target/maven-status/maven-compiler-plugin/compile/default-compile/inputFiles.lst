@@ -1,0 +1,5 @@
+/home/siva/Documents/work-micorservices/common/src/main/java/com/superstarbank/vomodel/BaseVo.java
+/home/siva/Documents/work-micorservices/common/src/main/java/com/superstarbank/vomodel/forex/ForexFeedRequest.java
+/home/siva/Documents/work-micorservices/common/src/main/java/com/superstarbank/vomodel/simplepayment/SimplePaymentResponse.java
+/home/siva/Documents/work-micorservices/common/src/main/java/com/superstarbank/vomodel/forex/ForexFeedResponse.java
+/home/siva/Documents/work-micorservices/common/src/main/java/com/superstarbank/vomodel/simplepayment/SimplePaymentRequest.java
