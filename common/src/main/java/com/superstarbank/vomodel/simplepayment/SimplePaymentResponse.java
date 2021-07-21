@@ -1,5 +1,7 @@
 package com.superstarbank.vomodel.simplepayment;
 
+import java.math.BigDecimal;
+
 import com.superstarbank.vomodel.BaseVo;
 
 public class SimplePaymentResponse  extends BaseVo  {
@@ -8,6 +10,8 @@ public class SimplePaymentResponse  extends BaseVo  {
     private String txnRefNumber;
 
     private Boolean status;
+
+    private BigDecimal amount;
 
     public SimplePaymentRequest getsPayRequest() {
         return sPayRequest;
@@ -33,11 +37,20 @@ public class SimplePaymentResponse  extends BaseVo  {
         this.status = status;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
     @Override
     public String toString() {
-        return "SimplePaymentResponse [sPayRequest=" + sPayRequest + ", status=" + status + ", txnRefNumber="
-                + txnRefNumber + "]";
+        return "SimplePaymentResponse [amount=" + amount + ", sPayRequest=" + sPayRequest + ", status=" + status
+                + ", txnRefNumber=" + txnRefNumber + "]";
     }
+
 
     
 }

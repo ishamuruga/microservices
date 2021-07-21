@@ -10,8 +10,18 @@ public class ForexFeedResponse extends BaseVo {
 
     private BigDecimal value;
 
+    private String stauts;
+
     public ForexFeedRequest getFxReq() {
         return fxReq;
+    }
+
+    public String getStauts() {
+        return stauts;
+    }
+
+    public void setStauts(String stauts) {
+        this.stauts = stauts;
     }
 
     public void setFxReq(ForexFeedRequest fxReq) {
@@ -28,8 +38,9 @@ public class ForexFeedResponse extends BaseVo {
 
     @Override
     public String toString() {
-        return "ForexFeedResponse [fxReq=" + fxReq + ", value=" + value + "]";
+        return "ForexFeedResponse [fxReq=" + fxReq + ", stauts=" + stauts + ", value=" + value + "]";
     }
+
 
     
 }

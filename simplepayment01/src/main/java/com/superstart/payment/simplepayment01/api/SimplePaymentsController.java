@@ -3,11 +3,14 @@ package com.superstart.payment.simplepayment01.api;
 import java.util.Date;
 import java.util.List;
 
+import com.netflix.discovery.converters.Auto;
 import com.superstarbank.vomodel.forex.ForexFeedRequest;
 import com.superstarbank.vomodel.forex.ForexFeedResponse;
 import com.superstarbank.vomodel.simplepayment.SimplePaymentRequest;
 import com.superstarbank.vomodel.simplepayment.SimplePaymentResponse;
-import com.superstart.payment.simplepayment01.service.ForexManagerClient;
+import com.superstart.payment.simplepayment01.service.DoPaymentsManager;
+import com.superstart.payment.simplepayment01.service.ForexManagerAdvClient;
+//import com.superstart.payment.simplepayment01.service.ForexManagerClient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,15 +22,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+
 @RestController
 @RequestMapping("api")
 public class SimplePaymentsController extends BaseController {
-    
-    @Autowired
-    private ForexManagerClient fxClient;
 
-    @GetMapping(value = "/names",produces = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<List<SimplePaymentRequest>> getList(){
+    @Autowired
+    private ForexManagerAdvClient fxClient;
+
+    @Autowired
+    private DoPaymentsManager service;
+
+    @GetMapping(value = "/names", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<SimplePaymentRequest>> getList() {
+        callForex();
+        return new ResponseEntity(this.getListPayReqs(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/doPayments", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SimplePaymentResponse> doPayment(@RequestBody SimplePaymentRequest payReq) throws Exception {
+        System.out.println("=====================in DO Payments Controller...");
+        return new ResponseEntity<SimplePaymentResponse>(service.doPayments(payReq), HttpStatus.OK);
+    }
+
+
+    //@Bulkhead(name = "callForex", fallbackMethod = "fallback1")
+    public String callForex() {
+        System.out.println("=========================Forex Call"); 
         ForexFeedRequest fxReq = new ForexFeedRequest();
         fxReq.setAmount(200);
         fxReq.setDestCcy("USD");
@@ -41,21 +63,15 @@ public class SimplePaymentsController extends BaseController {
             System.out.println("ERR in Field Client..." + e.toString());
             e.printStackTrace();
         }
-        System.out.println("=========================");
         System.out.println(fxRes);
-        
-        
-        return new ResponseEntity(this.getListPayReqs(),HttpStatus.OK);
+
+        return fxRes.toString();
     }
 
-    @PostMapping(value = "/doPayments",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<SimplePaymentResponse> doPayment(@RequestBody   SimplePaymentRequest payReq){
-        SimplePaymentResponse res = new SimplePaymentResponse();
-        res.setStatus(true);
-        res.setTxnRefNumber("TXN" + (Math.random()*1000));
-        res.setsPayRequest(payReq);
-        
-        
-        return new ResponseEntity<SimplePaymentResponse>(res,HttpStatus.OK);
-    }
+    // public String fallback1(Throwable throwable) {
+    //     // fallback logic for test2.
+    //     System.out.println("=========================fallback");
+    //     System.out.println(throwable.toString());
+    //     return "ERROR";
+    // }
 }
