@@ -1,0 +1,6 @@
+2021-08-19 00:00:06,983 INFO org.springframework.cloud.netflix.eureka.serviceregistry.EurekaServiceRegistry [SpringContextShutdownHook] Unregistering application FOREX-SERVICE with eureka with status DOWN
+2021-08-19 00:00:07,064 INFO com.netflix.discovery.DiscoveryClient$3 [SpringContextShutdownHook] Saw local status change event StatusChangeEvent [timestamp=1629311407064, current=DOWN, previous=UP]
+2021-08-19 00:00:07,065 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_FOREX-SERVICE/192.168.0.108:forex-service:8082: registering service...
+2021-08-19 00:00:07,074 INFO com.netflix.discovery.DiscoveryClient [DiscoveryClient-InstanceInfoReplicator-0] DiscoveryClient_FOREX-SERVICE/192.168.0.108:forex-service:8082 - registration status: 204
+2021-08-19 00:00:09,034 INFO org.springframework.scheduling.concurrent.ExecutorConfigurationSupport [SpringContextShutdownHook] Shutting down ExecutorService 'applicationTaskExecutor'
+2021-08-19 00:00:09,237 INFO com.netflix.discovery.DiscoveryClient [SpringContextShutdownHook] Shutting down DiscoveryClient ...

@@ -14,11 +14,10 @@
   <modules>
       	
     <module>./common</module>
-    
     <module>./eureka</module>
-          
+    <module>./gateway</module>
     <module>./forexfeed</module>
-      	
+    <module>./account</module>
     <module>./simplepayment01</module>
         
 
