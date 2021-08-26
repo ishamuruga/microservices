@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Table(name = "tbl_account")
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int accNbr;
 
     private String customerName;

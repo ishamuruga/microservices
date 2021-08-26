@@ -11,11 +11,13 @@ import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import com.superstar.retail.account.aggregate.AccountActivatedEvent;
 import com.superstar.retail.account.aggregate.CreateAccountCommand;
+import com.superstar.retail.account.aggregate.CreditAccountCommand;
 
 @Service
 @Transactional
@@ -54,12 +56,36 @@ public class AccountManagerImpl implements AccountManager{
     }
 
     @Override
-    public Account creditAccount(Account act, Double balance) {
+    public Account creditAccount(Account acct, Double balance) throws IllegalAccessException {
         
-        act.setBalance(act.getBalance() + balance);
-        repo.save(act);
 
-        return act;
+        Optional<Account> act = repo.findById(acct.getAccNbr());
+
+        if (act.get() != null){
+            acct.setBalance(act.get().getBalance());
+        } else {
+            throw new IllegalAccessException("No Account Found");
+        }
+
+        
+
+        System.out.println("1=====" + acct);
+        System.out.println("2=====" + balance);
+
+        String uuid = UUID.randomUUID().toString();
+
+        System.out.println("3=====" + uuid);
+
+        acct.setBalance(acct.getBalance() + balance);
+        repo.save(acct);
+        System.out.println(acct);
+        CompletableFuture<String>  future = commandGateway.send(
+                new CreditAccountCommand(uuid,
+                        acct.getAccNbr(),
+                        acct.getBalance(),
+                        acct.getCcy()));
+        
+        return acct;
     }
 
     @Override
@@ -73,10 +99,10 @@ public class AccountManagerImpl implements AccountManager{
         return act;
     }
 
-    @EventHandler
-    public void on(AccountActivatedEvent aae){
-        System.out.println("### --> AccountActivatedEvent-" + aae.id);
-    }
+    // @EventHandler
+    // public void on(AccountActivatedEvent aae){
+    //     System.out.println("### --> AccountActivatedEvent-" + aae.id);
+    // }
 
 
 }

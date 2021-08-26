@@ -17,6 +17,8 @@ public class AccountQuery {
 
     private String status;
 
+    private String id;
+
     public int getAcct() {
         return acct;
     }
@@ -47,6 +49,14 @@ public class AccountQuery {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     

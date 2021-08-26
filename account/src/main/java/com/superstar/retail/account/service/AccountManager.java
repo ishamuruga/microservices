@@ -10,7 +10,7 @@ public interface AccountManager {
 
     public Account enableAccount(Account act);
 
-    public Account creditAccount(Account act, Double balance);
+    public Account creditAccount(Account act, Double balance) throws IllegalAccessException;
 
     public Account debitAccount(Account act, Double balance) throws InSufficientBalance;
 

@@ -33,5 +33,10 @@ public class CreditDebitAccountRequest {
         this.isCredit = isCredit;
     }
 
+    @Override
+    public String toString() {
+        return "CreditDebitAccountRequest [act=" + act + ", amount=" + amount + ", isCredit=" + isCredit + "]";
+    }
+
     
 }

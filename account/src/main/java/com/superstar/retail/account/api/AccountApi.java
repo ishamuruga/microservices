@@ -1,7 +1,11 @@
 package com.superstar.retail.account.api;
 
+import java.util.UUID;
+
 import com.superstar.retail.account.dto.CreateAccountDTORequest;
 import com.superstar.retail.account.dto.CreateAccountDTOResponse;
+import com.superstar.retail.account.dto.CreditDebitAccountRequest;
+import com.superstar.retail.account.dto.CreditDebitAccountResponse;
 import com.superstar.retail.account.entity.Account;
 import com.superstar.retail.account.service.AccountManager;
 
@@ -32,6 +36,24 @@ public class AccountApi {
         res.setStatus(true);
         
         return new ResponseEntity<CreateAccountDTOResponse>(res,HttpStatus.OK);
+
+    }
+
+    @PostMapping(value = "/credit",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CreditDebitAccountResponse> creditAccount(@RequestBody CreditDebitAccountRequest req) throws IllegalAccessException{
+        
+
+        System.out.println("---------------" + req.toString());
+
+        Account act = service.creditAccount(req.getAct(),req.getAmount());
+        
+
+        CreditDebitAccountResponse res = new CreditDebitAccountResponse();
+        res.setAct(act);
+        res.setStatus(true);
+        res.setTxnRefNumber(UUID.randomUUID().toString());
+
+        return new ResponseEntity<CreditDebitAccountResponse>(res,HttpStatus.OK);
 
     }
 }

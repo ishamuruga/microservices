@@ -7,8 +7,18 @@ public class CreditDebitAccountResponse {
 
     private Boolean status;
 
+    private String txnRefNumber;
+
     public Account getAct() {
         return act;
+    }
+
+    public String getTxnRefNumber() {
+        return txnRefNumber;
+    }
+
+    public void setTxnRefNumber(String txnRefNumber) {
+        this.txnRefNumber = txnRefNumber;
     }
 
     public void setAct(Account act) {
@@ -23,7 +33,4 @@ public class CreditDebitAccountResponse {
         this.status = status;
     }
 
-    
-
-    
 }
