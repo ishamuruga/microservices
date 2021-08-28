@@ -1,0 +1,8 @@
+com/superstar/eventapi/event/OrderShippedEvent.class
+com/superstar/eventapi/event/InvoiceCreatedEvent.class
+com/superstar/eventapi/event/OrderCreatedEvent.class
+com/superstar/eventapi/command/CreateInvoiceCommand.class
+com/superstar/eventapi/command/CreateOrderCommand.class
+com/superstar/eventapi/command/UpdateOrderStatusCommand.class
+com/superstar/eventapi/command/CreateShippingCommand.class
+com/superstar/eventapi/event/OrderUpdatedEvent.class
