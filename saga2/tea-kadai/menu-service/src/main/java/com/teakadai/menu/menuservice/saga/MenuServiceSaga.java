@@ -23,7 +23,7 @@ public class MenuServiceSaga {
     @Inject
     private transient CommandGateway commandGateway;
 
-    //@Autowired
+    //@Inject
     //private OrderTeaRepo repo;
     
     @StartSaga
@@ -64,12 +64,12 @@ public class MenuServiceSaga {
 
         
 
-        //Optional<OrderTea> orderTea = repo.findById(orderCompletedEvent.orderId);
-        //OrderTea oTea = orderTea.get();
-        //oTea.setIsSucess(true);
-        //oTea.setTxnRefNumber(orderCompletedEvent.txnRefNum);
+        // Optional<OrderTea> orderTea = repo.findById(orderCompletedEvent.orderId);
+        // OrderTea oTea = orderTea.get();
+        // oTea.setIsSucess(true);
+        // oTea.setTxnRefNumber(orderCompletedEvent.txnRefNum);
 
-        //repo.save(oTea);
+        // repo.save(oTea);
         System.out.println("## PS 4 - Saga End: OrderCompletedEvent DB UPDATED");
 
         SagaLifecycle.end();        
@@ -79,13 +79,21 @@ public class MenuServiceSaga {
     public void handle(OrderNotCompletedEvent orderCompletedEvent) {
         System.out.println("## PS 1 - Saga End: OrderNotCompletedEvent");
         System.out.println("## PS 2 - Saga End: OrderNotCompletedEvent" + orderCompletedEvent.orderId);
-        
-        //Optional<OrderTea> orderTea = repo.findById(orderCompletedEvent.orderId);
+        System.out.println("==========================================1");
+        //String orderId  = orderCompletedEvent.orderId;
+        //System.out.println("==========================================2");
+        //Optional<OrderTea> orderTea = repo.findById(orderId);
+        //System.out.println("==========================================3");
         //OrderTea oTea = orderTea.get();
+        //System.out.println("==========================================4");
         //oTea.setIsSucess(false);
+        //System.out.println("==========================================5");
         //oTea.setTxnRefNumber("NONE");
+        //System.out.println("==========================================6");
 
         //repo.save(oTea);
+        //System.out.println("==========================================7");
+
         System.out.println("## PS 3 - Saga End: OrderNotCompletedEvent DB UPDATED");
         SagaLifecycle.end();
     }
