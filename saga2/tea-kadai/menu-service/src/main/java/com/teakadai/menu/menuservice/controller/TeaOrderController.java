@@ -21,6 +21,9 @@ public class TeaOrderController {
 
     @PostMapping(value = "/order",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderTea> doOrderTea(@RequestBody  OrderTea orderTea) throws Exception{
+
+        System.out.println("## MS - Controller:" + orderTea);
+
         service.doTeaOrder(orderTea);
 
         return new ResponseEntity<OrderTea>(orderTea,HttpStatus.OK);

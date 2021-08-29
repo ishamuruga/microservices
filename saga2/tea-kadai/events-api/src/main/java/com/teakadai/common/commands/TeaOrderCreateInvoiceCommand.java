@@ -8,11 +8,11 @@ public class TeaOrderCreateInvoiceCommand {
 
 	public final String orderId;
 
-	public Double cost;
+	public final Double cost;
 
-	public String user;
+	public final String user;
 
-	public String status;
+	public final String status;
 
 	public TeaOrderCreateInvoiceCommand(String paymentId, String orderId,Double cost,String user,String status) {
 		this.paymentId = paymentId;

@@ -33,16 +33,20 @@ public class OrderTeaManagerImpl implements OrderTeaManager{
     
     @Override
     public OrderTea doTeaOrder(OrderTea oTea) throws Exception {
+        
+
         String orderid = UUID.randomUUID().toString();
         oTea.setId(orderid);
         repo.save(oTea);
 
         Double cost = oTea.getCount()*60d;
+
+        System.out.println("## MS - Service UPD:" + oTea);
         
         CompletableFuture<String> fut = commandGateway.send(
                 new CreateTeaOrderCommand(orderid,cost,"Created",oTea.getUserid()));
 
-        oTea.setTxnRefNumber(fut.get().toLowerCase());
+        //oTea.setTxnRefNumber(fut.get().toLowerCase());
 
         return oTea;
     }
